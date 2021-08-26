@@ -1,7 +1,5 @@
 <template>
   <div class="column is-half is-offset-one-quarter">
-    <h1 class="title">Vaccine Registration Form</h1>
-
     <form>
       <div class="field-group">
         <div class="field is-inline-block-desktop">
@@ -34,7 +32,7 @@
       </div>
 
       <div>
-        <label class="label"> Personal Details </label>
+        <h1 class="title">Personal Details</h1>
       </div>
 
       <div class="field-group">
@@ -182,17 +180,13 @@
           </span>
         </div>
       </div>
-
-      <div>
-        <label class="label"> Health Information </label>
-      </div>
     </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'VaccRegForm',
+  name: 'PersonalInformationForm',
   data() {
     return {
       isPhilHealthMemeber: true,
