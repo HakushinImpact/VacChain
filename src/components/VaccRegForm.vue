@@ -1,9 +1,20 @@
 <template>
-  <div> VAV REG FORM </div>
+  <div> 
+    <PersonalInformationForm />
+    <HealthInformationForm />
+  </div>
 </template>
 
 <script>
-export default {};
+import PersonalInformationForm from './PersonalInformationForm.vue';
+import HealthInformationForm from './HealthInformationForm.vue';
+
+export default {
+  components: {
+    PersonalInformationForm,
+    HealthInformationForm
+  }
+};
 </script>
 
 <style>
