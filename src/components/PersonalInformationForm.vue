@@ -2,12 +2,10 @@
   <div class="column is-half is-offset-one-quarter">
     <form>
       <div class="field-group">
-        <div class="field is-inline-block-desktop">
-          <input class="checkbox" type="checkbox" value="isMember" />
-        </div>
-        <div class="field is-inline-block-desktop">
-          <label for="isMember"> PhilHealth Member? </label>
-        </div>
+        <label class="checkbox">
+          <input type="checkbox" />
+          PhilHealth Member?
+        </label>
       </div>
 
       <div class="field-group">
