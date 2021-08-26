@@ -14,7 +14,7 @@
         class="navbar-burger"
         aria-label="menu"
         aria-expanded="false"
-        data-target="navbarBasicExample"
+        data-target="navbarContents"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -22,19 +22,19 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarContents" class="navbar-menu">
       <div class="navbar-start">
-        <router-link to="/dashboard" class="navbar-item">
+        <router-link to="dashboard" class="navbar-item">
           Dashboard
         </router-link>
-        <router-link to="/manage" class="navbar-item"> Manage </router-link>
+        <router-link to="manage" class="navbar-item"> Manage </router-link>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
             <router-link
-              to="/new"
+              to="new"
               class="button is-primary is-rounded has-icon-left"
             >
               <span class="icon is-small">

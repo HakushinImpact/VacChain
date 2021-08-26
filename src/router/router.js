@@ -1,7 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from '../App.vue';
-// import Form from '../components/Form.vue';
+import Dashboard from '../components/Dashboard';
+import VaccRegForm from '../components/VaccRegForm';
+import Manage from '../components/Manage';
+import Login from '../components/Login';
+import Home from '../components/Home';
 
 Vue.use(VueRouter);
 
@@ -10,20 +14,38 @@ const router = new VueRouter({
     // Default route
     {
       path: '/',
-      name: 'Home',
-      component: App
+      name: 'VacChain',
+      component: App,
+      children: [
+        {
+          path: '/login',
+          name: 'Login',
+          component: Login
+        },
+        {
+          path: '/admin',
+          name: 'Welcome',
+          component: Home,
+          children: [
+            {
+              path: 'dashboard',
+              name: 'Dashboard',
+              component: Dashboard
+            },
+            {
+              path: 'manage',
+              name: 'Manage',
+              component: Manage
+            },
+            {
+              path: 'new',
+              name: 'New Record',
+              component: VaccRegForm
+            }
+          ]
+        }
+      ]
     },
-    // {
-    //   path: '/dashboard',
-    //   name: 'Dashboard',
-    //   component: Dashboard
-    // },
-    // Default route
-    // {
-    //   path: '/new',
-    //   name: 'New Record',
-    //   component: Form
-    // },
     // Other routes or undefined routes redirects to home
     { path: '*', redirect: '/' }
   ],
