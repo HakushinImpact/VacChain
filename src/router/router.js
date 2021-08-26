@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from '../App.vue';
+// import Form from '../components/Form.vue';
 
 Vue.use(VueRouter);
 
@@ -12,12 +13,17 @@ const router = new VueRouter({
       name: 'Home',
       component: App
     },
+    // {
+    //   path: '/dashboard',
+    //   name: 'Dashboard',
+    //   component: Dashboard
+    // },
     // Default route
-    {
-      path: '/test/:someSlugHere',
-      name: 'Test',
-      component: App
-    },
+    // {
+    //   path: '/new',
+    //   name: 'New Record',
+    //   component: Form
+    // },
     // Other routes or undefined routes redirects to home
     { path: '*', redirect: '/' }
   ],
