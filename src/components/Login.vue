@@ -33,7 +33,11 @@
 
       <div class="field">
         <p class="control">
-          <button class="button is-success" :disabled="!isComplete">
+          <button
+            class="button is-success"
+            @click="login"
+
+          >
             Login
           </button>
         </p>
@@ -56,7 +60,9 @@ export default {
   methods: {
     login() {
       //   this.$router.push('/admin');
-      this.$emit('login');
+      if (this.username === 'admin' && this.password === 'admin') {
+        this.$router.push('/admin');
+      }
     }
   }
 };
