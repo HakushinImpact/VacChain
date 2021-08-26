@@ -37,12 +37,12 @@
       <div class="level-item has-text-centered">
         <div class="card">
           <div class="card-content">
-            <p class="heading">AVAILABLE DOSE</p>
+            <p class="heading">VACCINE ADMINISTERED</p>
             <p class="title">3500</p>
             <p class="heading">SINOVAC</p>
           </div>
           <div class="card-content">
-            <p class="heading">AVAILABLE DOSE</p>
+            <p class="heading">VACCINE ADMINISTERED</p>
             <p class="title">600</p>
             <p class="heading">MODERNA</p>
           </div>
