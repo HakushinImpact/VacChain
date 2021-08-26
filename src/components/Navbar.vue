@@ -24,17 +24,19 @@
 
     <div id="navbarContents" class="navbar-menu">
       <div class="navbar-start">
-        <router-link to="dashboard" class="navbar-item">
+        <router-link :to="{ name: 'Dashboard' }" class="navbar-item">
           Dashboard
         </router-link>
-        <router-link to="manage" class="navbar-item"> Manage </router-link>
+        <router-link :to="{ name: 'Manage' }" class="navbar-item">
+          Manage
+        </router-link>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
             <router-link
-              to="new"
+              :to="{ name: 'New Record' }"
               class="button is-primary is-rounded has-icon-left"
             >
               <span class="icon is-small">
