@@ -6,6 +6,7 @@ import VaccRegForm from '../components/VaccRegForm';
 import Manage from '../components/Manage';
 import Login from '../components/Login';
 import Home from '../components/Home';
+import NotFound from '../components/NotFound';
 
 Vue.use(VueRouter);
 
@@ -28,7 +29,7 @@ const router = new VueRouter({
           component: Home,
           children: [
             {
-              path: 'dashboard',
+              path: '',
               name: 'Dashboard',
               component: Dashboard
             },
@@ -46,8 +47,13 @@ const router = new VueRouter({
         }
       ]
     },
+    {
+      path: '/404',
+      name: '404 Not Found',
+      component: NotFound
+    },
     // Other routes or undefined routes redirects to home
-    { path: '*', redirect: '/' }
+    { path: '*', redirect: '/404' }
   ],
   // mode: 'history', //remove if production
   scrollBehavior(to, from, savedPosition) {
