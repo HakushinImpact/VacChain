@@ -1,178 +1,180 @@
 <template>
-  <div class="column is-half is-offset-one-quarter">
-    <form>
-      <div>
-        <h1 class="title">Health Information</h1>
-      </div>
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <p class="title">Health Information</p>
+        <form>
 
-      <div>
-        <label class="checkbox">
-          <input type="checkbox" />
-          Had interaction with COVID-19 patient?
-        </label>
-      </div>
-
-      <div class="field-group">
-        <div class="field is-inline-block-desktop">
-          <label class="checkbox">
-            <input type="checkbox" />
-            Diagnosed with COVID-19?
-          </label>
-        </div>
-        <div class="field is-inline-block-desktop">
-          <label type="label">
-            <input class="input" type="date" />
-            Date of first positive result/specimen collection.
-          </label>
-        </div>
-        <div class="field is-inline-block-desktop">
-          <span class="select">
-            <select v-model="selectedCovidClassification">
-              <option selected> COVID-19 Classification </option>
-              <option v-for="(item, index) in covidClassification" :key="index">
-                {{ item }}
-              </option>
-            </select>
-          </span>
-        </div>
-      </div>
-
-      <div class="field-group">
-        <div class="field is-inline-block-desktop">
-          <label class="checkbox">
-            <input type="checkbox" />
-            With Comorbidity?
-          </label>
-        </div>
-        <div class="field is-inline-block-desktop">
-          <input type="text" class="input" placeholder="Name of Comorbidity" />
-        </div>
-      </div>
-
-      <div>
-        <label class="checkbox">
-          <input v-model="isPregnant" type="checkbox" />
-          Pregnant?
-        </label>
-      </div>
-
-      <div>
-        <h1 class="subtitle">
-          Patient Medical History
-        </h1>
-      </div>
-
-      <div class="columns">
-        <div class="column">
-          <div>
-            <label> History of: </label>
-          </div>
-          <div>
+          <div class="mb-2">
             <label class="checkbox">
               <input type="checkbox" />
-              Diabetes Mellitus
+              Had interaction with COVID-19 patient?
             </label>
           </div>
-          <div>
-            <label class="checkbox">
-              <input type="checkbox" />
-              Bronchial Asthma
-            </label>
-          </div>
-          <div>
-            <label class="checkbox">
-              <input type="checkbox" />
-              Hypertension
-            </label>
-          </div>
-          <div>
-            <label class="checkbox">
-              <input type="checkbox" />
-              Cancer
-            </label>
-          </div>
-          <div>
-            <label class="checkbox">
-              <input type="checkbox" />
-              Others:
-              <input type="text" class="input" placeholder="Please Specify...">
-            </label>
-          </div>
-        </div>
 
-        <div class="column">
-          <label> History of Allergies: </label>
+          <div class="columns field is-vcentered">
+            <div class="column is-3">
+              <div class="field">
+                <label class="checkbox">
+                  <input type="checkbox" />
+                  Diagnosed with COVID-19?
+                </label>
+              </div>
+            </div>
+            <div class="column is-5">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="date" />
+                </div>
+                <p class="help">Date of first positive result/specimen collection.</p>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div class="field">
+                <p class="control is-expanded">
+                  <span class="select is-fullwidth">
+                    <select v-model="selectedCovidClassification">
+                      <option selected>Classification </option>
+                      <option v-for="(item, index) in covidClassification" :key="index">
+                        {{ item }}
+                      </option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+              <p class="help">COVID-19 Classification.</p>
+            </div>
+          </div>
+
+          <div class="columns field is-vcentered">
+            <div class="column is-3">
+              <div class="field">
+                <label class="checkbox">
+                  <input type="checkbox" />
+                  With Comorbidity?
+                </label>
+              </div>
+            </div>
+            <div class="column is-9">
+               <div class="field is-fullwidth">
+                  <p class="control is-expanded">
+                    <input type="text" class="input" placeholder="Name of Comorbidity" />
+                  </p>
+                </div>
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <label class="checkbox">
+              <input v-model="isPregnant" type="checkbox" />
+              Pregnant?
+            </label>
+          </div>
+
+          <div>
+            <p class="title is-4 my-2">
+              Patient Medical History
+            </p>
+          </div>
+
           <div class="columns">
             <div class="column">
+              <div class="label is-5">History of:</div>
               <div>
                 <label class="checkbox">
                   <input type="checkbox" />
-                  Drug Allergy
+                  Diabetes Mellitus
                 </label>
               </div>
               <div>
                 <label class="checkbox">
                   <input type="checkbox" />
-                  Food Allergy
+                  Bronchial Asthma
                 </label>
               </div>
               <div>
                 <label class="checkbox">
                   <input type="checkbox" />
-                  Insect
+                  Hypertension
                 </label>
               </div>
               <div>
                 <label class="checkbox">
                   <input type="checkbox" />
-                  Latex Allergy
+                  Cancer
+                </label>
+              </div>
+              <div>
+                <label class="checkbox">
+                  <input type="checkbox" />
+                  Others:
+                  <input type="text" class="input" placeholder="Please Specify...">
                 </label>
               </div>
             </div>
 
             <div class="column">
-              <div>
-                <label class="checkbox">
-                  <input type="checkbox" />
-                  Mold Allergy
-                </label>
-              </div>
-              <div>
-                <label class="checkbox">
-                  <input type="checkbox" />
-                  Pet Allergy
-                </label>
-              </div>
-              <div>
-                <label class="checkbox">
-                  <input type="checkbox" />
-                  Pollen Allergy
-                </label>
+              <div class="label is-5">History of Allergies:</div>
+              <div class="columns">
+                <div class="column">
+                  <div>
+                    <label class="checkbox">
+                      <input type="checkbox" />
+                      Drug Allergy
+                    </label>
+                  </div>
+                  <div>
+                    <label class="checkbox">
+                      <input type="checkbox" />
+                      Food Allergy
+                    </label>
+                  </div>
+                  <div>
+                    <label class="checkbox">
+                      <input type="checkbox" />
+                      Insect
+                    </label>
+                  </div>
+                  <div>
+                    <label class="checkbox">
+                      <input type="checkbox" />
+                      Latex Allergy
+                    </label>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div>
+                    <label class="checkbox">
+                      <input type="checkbox" />
+                      Mold Allergy
+                    </label>
+                  </div>
+                  <div>
+                    <label class="checkbox">
+                      <input type="checkbox" />
+                      Pet Allergy
+                    </label>
+                  </div>
+                  <div>
+                    <label class="checkbox">
+                      <input type="checkbox" />
+                      Pollen Allergy
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+
+          <div class="buttons has-addons is-right">
+            <button class="button is-primary is-outlined" @click="back">Back</button>
+            <button class="button is-success">Submit</button>
+          </div>
+
+        </form>
       </div>
-
-      <div class="field">
-        <div class="field is-inline-block-desktop">
-          <p class="control">
-            <button class="button is-primary is-outlined">
-              Back
-            </button>
-          </p>
-        </div>
-
-        <div class="field is-inline-block-desktop">
-          <p class="control">
-            <button class="button is-success">
-              Submit
-            </button>
-          </p>
-        </div>
-      </div>
-
-    </form>
+    </div>
   </div>
 </template>
 
@@ -192,7 +194,12 @@ export default {
       ]
     };
   },
-  computed: {}
+  computed: {},
+  methods: {
+    back() {
+      this.$emit('back-page')
+    }
+  }
 };
 </script>
 

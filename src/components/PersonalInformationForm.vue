@@ -2,10 +2,9 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-half">
-        <p class="title is-1 has-text-centered">Vaccination Registration Form</p>
         <form>
 
-          <div class="field-group">
+          <div>
             <label class="checkbox">
               <input type="checkbox" />
                 PhilHealth Member?
@@ -260,7 +259,7 @@
             <div class="column">
               <div class="field is-pulled-right">
                 <p class="control">
-                  <button class="button is-success is-outlined">
+                  <button class="button is-success is-outlined" @click="next">
                     Next
                   </button>
                 </p>
@@ -310,7 +309,12 @@ export default {
       workCategory: ['Cat 1', 'Cat 2', 'Cat 3']
     };
   },
-  computed: {}
+  computed: {},
+  methods: {
+    next() {
+      this.$emit('next-page')
+    }
+  }
 };
 </script>
 
