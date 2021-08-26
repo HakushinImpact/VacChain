@@ -178,6 +178,15 @@
           </span>
         </div>
       </div>
+
+      <div class="field">
+        <p class="control">
+          <button class="button is-success is-outlined">
+            Next
+          </button>
+        </p>
+      </div>
+
     </form>
   </div>
 </template>
