@@ -282,7 +282,7 @@ export default {
         isPhilHealthMember: false,
         philHealthNumber: '',
         selectedPhilHealthCategory: '',
-        category: ['A0', 'A1', 'A2', 'A3'],
+        category: ['Indigent', 'Self-employed', 'PWD', 'Senior Citizen', 'OFW'],
       },
       personal: {
         lastName: '',
@@ -348,10 +348,10 @@ export default {
       this.employment.selectedWorkCategory = ''
     },
     next() {
-      if(this.philHealthInfo.isPhilHealthMember) {
+      if(!this.philHealthInfo.isPhilHealthMember) {
         this.clearPhilHealthInfo
       }
-      if(this.isEmployed){
+      if(!this.isEmployed){
         this.clearEmploymentInfo
       }
       this.$emit('next-page')

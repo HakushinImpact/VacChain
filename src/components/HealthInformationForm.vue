@@ -7,7 +7,7 @@
 
           <div class="mb-2">
             <label class="checkbox">
-              <input type="checkbox" v-model="hadContact">
+              <input type="checkbox" v-model="covid.hadContact">
               Had interaction with COVID-19 patient?
             </label>
           </div>
@@ -16,49 +16,49 @@
             <div class="column is-4">
               <div class="field">
                 <label class="checkbox">
-                  <input type="checkbox" v-model="isDiagnosed">
+                  <input type="checkbox" v-model="covid.isDiagnosed">
                   Diagnosed with COVID-19?
                 </label>
               </div>
             </div>
-            <div class="column is-4">
+            <div v-show="covid.isDiagnosed" class="column is-4">
               <div class="field">
                 <div class="control">
-                  <input class="input" type="date" v-model="dateOfPositiveResult">
+                  <input class="input" type="date" v-model="covid.dateOfPositiveResult">
                 </div>
                 <p class="help">Date of first positive result/specimen collection.</p>
               </div>
             </div>
-            <div class="column is-4">
+            <div v-show="covid.isDiagnosed" class="column is-4">
               <div class="field">
                 <p class="control is-expanded">
                   <span class="select is-fullwidth">
-                    <select v-model="selectedCovidClassification">
-                      <option selected>Classification </option>
-                      <option v-for="(item, index) in covidClassification" :key="index">
+                    <select v-model="covid.selectedCovidClassification">
+                      <option value="" disabled hidden>Classification</option>
+                      <option v-for="(item, index) in covid.covidClassification" :key="index">
                         {{ item }}
                       </option>
                     </select>
                   </span>
                 </p>
+                <p class="help">COVID-19 Classification.</p>
               </div>
-              <p class="help">COVID-19 Classification.</p>
             </div>
           </div>
 
-          <div class="columns field is-vcentered">
+          <div class="columns field">
             <div class="column is-3">
               <div class="field">
                 <label class="checkbox">
-                  <input type="checkbox" v-model="withComorbidity">
+                  <input type="checkbox" v-model="covid.withComorbidity">
                   With Comorbidity?
                 </label>
               </div>
             </div>
-            <div class="column is-9">
+            <div v-show="covid.withComorbidity" class="column is-9">
                <div class="field is-fullwidth">
                   <p class="control is-expanded">
-                    <input type="text" class="input" placeholder="Name of Comorbidity" v-model="comorbidityName">
+                    <input type="text" class="input" placeholder="Name of Comorbidity" v-model="covid.comorbidityName">
                   </p>
                 </div>
             </div>
@@ -66,7 +66,7 @@
 
           <div class="mb-3">
             <label class="checkbox">
-              <input v-model="isPregnant" type="checkbox" />
+              <input v-model="covid.isPregnant" type="checkbox" />
               Pregnant?
             </label>
           </div>
@@ -170,7 +170,7 @@
 
           <div class="buttons has-addons is-right">
             <button class="button is-primary is-outlined mr-3" @click="back">Back</button>
-            <button class="button is-success">Submit</button>
+            <button class="button is-success" @click="submit">Submit</button>
           </div>
 
         </form>
@@ -184,20 +184,22 @@ export default {
   name: 'HealthInformationForm',
   data() {
     return {
-      hadContact: false,
-      isDiagnosed: false,
-      dateOfPositiveResult: '',
-      selectedCovidClassification: 'COVID-19 Classification',
-      covidClassification: [
-        'Asymptomatic',
-        'Mild',
-        'Moderate',
-        'Severe',
-        'Critical'
-      ],
-      withComorbidity: false,
-      comorbidityName: '',
-      isPregnant: false,
+      covid: {
+        hadContact: false,
+        isDiagnosed: false,
+        dateOfPositiveResult: '',
+        selectedCovidClassification: '',
+        covidClassification: [
+          'Asymptomatic',
+          'Mild',
+          'Moderate',
+          'Severe',
+          'Critical'
+        ],
+        withComorbidity: false,
+        comorbidityName: '',
+        isPregnant: false,
+      },
       othersHistoryOf: '',
       checkedHistoryOf: [],
       checkedHistoryOfAllergies: []
@@ -207,6 +209,15 @@ export default {
   methods: {
     back() {
       this.$emit('back-page')
+    },
+    submit() {
+      if(!this.covid.isDiagnosed){
+        this.covid.dateOfPositiveResult = '',
+        this.covid.selectedCovidClassification = ''
+      }
+      if(!this.covid.withComorbidity){
+        this.covid.comorbidityName = ''
+      }
     }
   }
 };
