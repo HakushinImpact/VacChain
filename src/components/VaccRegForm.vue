@@ -17,7 +17,6 @@ export default {
   },
   data() {
     return {
-      view: PersonalInformationForm,
       show: true
     }
   },
