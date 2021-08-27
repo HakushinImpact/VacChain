@@ -35,40 +35,6 @@ const work_categories = [
   'Others'
 ];
 
-// const test = {
-//   philhealth_info: {
-//     isMember: false,
-//     number: '',
-//     category: '',
-//     category_options: options.philhealth_category
-//   },
-//   personal: {
-//     lastName: '',
-//     firstName: '',
-//     middleName: '',
-//     suffix: '',
-//     sex: '',
-//     sex_options: options.sex,
-//     birthdate: '',
-//     contactNumber: '',
-//     fullAddress: '',
-//     civil_status: '',
-//     civil_status_options: options.civil_status,
-//   },
-//     employment: {
-//       status: '',
-//       status_options: options.employment_status,
-
-//         work: '',
-//         employer_name: '',
-//         company_name: '',
-//         company_address: '',
-//         category: '',
-//         category_options: options.work_categories
-
-//     }
-// };
-
 module.exports = {
   philhealth_category,
   sex,
