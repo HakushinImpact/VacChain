@@ -300,16 +300,33 @@ export default {
         'Part Time Employed',
         'Self Employed'
       ],
-      isEmployed: true,
+      isEmployed: false,
       work: '',
       employerName: '',
       companyName: '',
       companyAddress: '',
       selectedWorkCategory: 'Work Category',
-      workCategory: ['Cat 1', 'Cat 2', 'Cat 3']
+      workCategory: ['Accountant',
+      'Airline', 
+      'Call Center', 
+      'Construction',
+      'Customer Service',
+      'Education',
+      'Entry Level',
+      'Government',
+      'Management',
+      'Medicine',
+      'Nursing',
+      'Sales',
+      'Security',
+      'Tech',
+      'Others'
+      ]
     };
   },
-  computed: {},
+  computed: {
+    
+  },
   methods: {
     next() {
       this.$emit('next-page')
