@@ -14,7 +14,8 @@
                 <div class="column">
                   <p class="title mt-5 mb-2">{{vaccinatedIndividuals}}</p>
                   <p class="label mb-0">Vaccinated</p>
-                  <p class="label mb-5">Individuals</p>
+                  <p class="label mt-0 mb-0">Individuals</p>
+                  <p class="help mt-0 mb-2">{{dateTimeNow()}} </p>
                 </div>
               </div>
             </div>
@@ -34,7 +35,7 @@
         </div>
         
         <div class="box">
-          <p class="title"> Top Provinces </p>
+          <p class="title"> Previous Days </p>
           <div>
             <img src="../assets/dummyChart.svg"/>
           </div>
@@ -47,10 +48,16 @@
 
 <script>
 export default {
+  methods: {
+    dateTimeNow() {
+      const current = new Date();   
+      return ((current.getMonth()+1)+'-'+current.getDate()+'-'+current.getFullYear()) + ' ' + (current.getHours() + ":" + current.getMinutes());
+    }
+  },
   data() {
     return {
-      vaccinatedIndividuals: 750,
-      dailyVaccinations: 250
+      vaccinatedIndividuals: 8601,
+      dailyVaccinations: 630
     }
   }
 }
