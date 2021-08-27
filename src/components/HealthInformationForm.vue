@@ -50,15 +50,15 @@
             <div class="column is-3">
               <div class="field">
                 <label class="checkbox">
-                  <input type="checkbox" v-model="covid.has_comorbidity">
+                  <input type="checkbox" v-model="has_comorbidity">
                   With Comorbidity?
                 </label>
               </div>
             </div>
-            <div v-show="covid.has_comorbidity" class="column is-9">
+            <div v-show="has_comorbidity" class="column is-9">
                <div class="field is-fullwidth">
                   <p class="control is-expanded">
-                    <input type="text" class="input" placeholder="Name of Comorbidity" v-model="covid.comorbidity">
+                    <input type="text" class="input" placeholder="Name of Comorbidity" v-model="comorbidity">
                   </p>
                 </div>
             </div>
@@ -66,7 +66,7 @@
 
           <div class="mb-3">
             <label class="checkbox">
-              <input v-model="covid.is_pregnant" type="checkbox" />
+              <input v-model="is_pregnant" type="checkbox" />
               Pregnant?
             </label>
           </div>
@@ -215,12 +215,21 @@ export default {
         this.covid.diagnosis_date = ''
         this.covid.classification = ''
       }
-      if(!this.covid.has_comorbidity){
-        this.covid.comorbidity = ''
+      if(!this.has_comorbidity){
+        this.comorbidity = ''
       }
       const others = this.other_diseases.split(',')
       this.medical_history.disease = this.medical_history.disease.concat(others)
-      this.$emit('submit', )
+      const health_info = { health_information: 
+        {
+          covid: this.covid,
+          has_comorbidity: this.has_comorbidity,
+          comorbidity: this.comorbidity,
+          is_pregnant: this.is_pregnant, 
+          medical_history: this.medical_history
+        }
+      }
+      this.$emit('submit', health_info)
     }
   }
 };

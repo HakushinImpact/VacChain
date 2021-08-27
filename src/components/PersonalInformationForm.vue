@@ -158,7 +158,7 @@
           <div class="field is-grouped">
             <p class="control is-expanded">
               <span class="select is-fullwidth">
-                <select v-model="personal_info.contact.civil_status">
+                <select v-model="personal_info.civil_status">
                   <option value="" disabled hidden>Civil Status</option>
                   <option
                     v-for="(item, index) in civil_status_options"
@@ -171,7 +171,7 @@
             </p>
             <p class="control is-expanded">
               <span class="select is-fullwidth">
-                <select v-model="personal_info.contact.employment.status">
+                <select v-model="personal_info.employment.status">
                   <option value="" disabled hidden>Employment Status</option>
                   <option
                     v-for="(item, index) in status_options"
@@ -190,7 +190,7 @@
                 <div class="field">
                   <p class="control">
                     <input
-                      v-model="personal_info.contact.employment.work"
+                      v-model="personal_info.employment.work"
                       class="input"
                       type="text"
                       placeholder="Occupation/Work"
@@ -200,7 +200,7 @@
                 <div class="field">
                   <p class="control">
                     <input
-                      v-model="personal_info.contact.employment.employer_name"
+                      v-model="personal_info.employment.employer_name"
                       class="input"
                       type="text"
                       placeholder="Employer Name"
@@ -211,7 +211,7 @@
                 <div class="field">
                   <p class="control">
                     <input
-                      v-model="personal_info.contact.employment.company_name"
+                      v-model="personal_info.employment.company_name"
                       class="input"
                       type="text"
                       placeholder="Company Name"
@@ -225,7 +225,7 @@
                 <div class="field">
                   <p class="control">
                     <input
-                      v-model="personal_info.contact.employment.company_address"
+                      v-model="personal_info.employment.company_address"
                       class="input"
                       type="text"
                       placeholder="Company Address"
@@ -235,7 +235,7 @@
                 <div class="field">
                   <p class="control is-expanded">
                     <span class="select is-fullwidth">
-                      <select v-model="personal_info.contact.employment.category">
+                      <select v-model="personal_info.employment.category">
                         <option value="" disabled hidden>Work Category</option>
                         <option
                           v-for="(item, index) in work_options"
@@ -286,8 +286,9 @@ export default {
         contact: {
           number: '',
           address: '',
-          civil_status: '',
-          employment: {
+        },
+        civil_status: '',
+        employment: {
             status: '',
             work: '',
             employer_name: '',
@@ -295,7 +296,6 @@ export default {
             company_address: '',
             category: '',
           }
-        }
       },
       category_options: options.philhealth_category,
       sex_options: options.sex,
@@ -306,7 +306,7 @@ export default {
   },
   computed: {
     isEmployed() {
-      return this.personal_info.contact.employment.status && this.personal_info.contact.employment.status !== 'Unemployed';
+      return this.personal_info.employment.status && this.personal_info.employment.status !== 'Unemployed';
     }
   },
   methods: {
@@ -315,12 +315,12 @@ export default {
       this.philhealth_info.category = '';
     },
     clearEmploymentInfo() {
-      (this.personal_info.contact.employment.status),
-      (this.personal_info.contact.employment.work = ''),
-      (this.personal_info.contact.employment.employerName = ''),
-      (this.personal_info.contact.employment.companyName = ''),
-      (this.personal_info.contact.employment.companyAddress = ''),
-      (this.personal_info.contact.employment.selectedWorkCategory = '');
+      (this.personal_info.employment.status),
+      (this.personal_info.employment.work = ''),
+      (this.personal_info.employment.employerName = ''),
+      (this.personal_info.employment.companyName = ''),
+      (this.personal_info.employment.companyAddress = ''),
+      (this.personal_info.employment.selectedWorkCategory = '');
     },
     next() {
       if (!this.philhealth_info.isMember) {
@@ -329,7 +329,9 @@ export default {
       if (!this.isEmployed) {
         this.clearEmploymentInfo();
       }
-      this.$emit('next-page', );
+      const personal_data = {philhealth_info: this.philhealth_info, personal_info: this.personal_info}
+      console.log(personal_data)
+      this.$emit('next-page', personal_data);
     }
   }
 };
