@@ -11,4 +11,16 @@ export default {
 </script>
 
 <style>
+.is-primary {
+  color: #6065d7 !important;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-primary {
+  color: #fff !important;
+  background-color: #1b17ec !important;
+  border-color: transparent;
+  color: #fff;
+}
 </style>
