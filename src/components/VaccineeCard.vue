@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'VaccineeCard'
+  name: 'VaccineeCard',
   props: {
       
   }
