@@ -45,7 +45,7 @@
               <strong>New record</strong>
             </router-link>
             <router-link
-              to="/"
+              to="/login"
               class="button is-danger is-inverted is-rounded has-icon-left"
             >
               <span class="icon is-small">
