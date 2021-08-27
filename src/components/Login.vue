@@ -5,7 +5,7 @@
         <div class="has-text-centered">
           <span class="is-inline-flex">
             <img class="image is-48x48" src="../assets/logo.png" />
-            <h1 class="title is-2">VacChain</h1>
+            <h1 class="ml-3 title is-2">VacChain</h1>
           </span>
         </div>
         <form class="box my-5 p-5">
