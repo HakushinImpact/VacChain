@@ -13,11 +13,13 @@ import {
   faPlus,
   faSignOutAlt,
   faUser,
+  faUsers,
+  faCalendar,
   faLock,
   faEdit
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faSearch, faPlus, faSignOutAlt, faUser, faLock, faEdit);
+library.add(faSearch, faPlus, faSignOutAlt, faUser, faUsers, faCalendar, faLock, faEdit);
 Vue.component('FontAwesomeIcon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 
