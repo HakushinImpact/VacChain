@@ -327,7 +327,7 @@ export default {
       if (!this.isEmployed) {
         this.clearEmploymentInfo();
       }
-      this.$emit('next-page');
+      this.$emit('next-page', );
     }
   }
 };

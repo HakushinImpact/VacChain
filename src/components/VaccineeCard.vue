@@ -1,5 +1,5 @@
 <template>
-  <div class="box" @click="$emit('click-entry')">
+  <div class="box" @click="record(item._id)">
     <div class="columns is-vcentered">
       <div class="column has-text-centered is-3">
         <span class="icon is-large fa-5x">
@@ -11,10 +11,6 @@
           <p class="title is-4">John Smith</p>
           <p class="subtitle is-6">Vaccination Status: Vaccinated (1st Dose)</p>
         </div>
-        <div class="mt-2">
-          <p class="is-size-6">Address: Somewhere in the Woods</p>
-          <p class="is-size-6">Contact Number: 09123456789</p>
-        </div>
       </div>
     </div>
   </div>
@@ -23,6 +19,9 @@
 <script>
 export default {
   name: 'VaccineeCard'
+  props: {
+      
+  }
 };
 </script>
 

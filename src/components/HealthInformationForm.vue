@@ -218,6 +218,8 @@ export default {
       if(!this.covid.withComorbidity){
         this.covid.comorbidityName = ''
       }
+
+      this.$emit('submit', )
     }
   }
 };

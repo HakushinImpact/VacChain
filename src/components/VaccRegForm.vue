@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p class="title is-1 has-text-centered">Vaccination Registration Form</p> 
-    <PersonalInformationForm v-show="show" @next-page="togglePage"/>
-    <HealthInformationForm v-show="!show" @back-page="togglePage"/>
+    <p class="title is-1 has-text-centered">Vaccination Registration Form</p>
+    <PersonalInformationForm v-show="show" @next-page="togglePage" />
+    <HealthInformationForm v-show="!show" @back-page="togglePage" />
   </div>
 </template>
 
@@ -18,11 +18,11 @@ export default {
   data() {
     return {
       show: true
-    }
+    };
   },
   methods: {
-    togglePage(){
-      this.show = !this.show
+    togglePage() {
+      this.show = !this.show;
     }
   }
 };
