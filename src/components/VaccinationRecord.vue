@@ -4,73 +4,70 @@
       <div class="column is-three-quarters">
         <p class="title is-1 has-text-centered">Vaccination Record Form</p>
 
+        <div>
+            <h1 class="title is-3 mb-5"> Vaccine Details </h1>
+        </div>
+
+        <div class="columns field is-horizontal">
+            <div class="column is-3 field-body">
+                <p class="label mb-1">Dosage</p>
+                <span class="select is-fullwidth">
+                        <select v-model="administeredVaccine.selectedDosage">
+                            <option value="" disabled hidded> Dosage </option>
+                            <option v-for="(item, index) in dosage" :key="index">
+                            {{ item }}
+                            </option>
+                        </select>
+                </span>
+            </div>
+
+            <div class="column is-4 field-body">
+                <p class="label mb-1">Date Administered</p>
+                <input class="input" type="date" v-model="administeredVaccine.dateReceived">
+            </div>
+
+            <div class="column is-5 field-body">
+                <p class="label mb-1">Vaccine Manufacturer</p>                
+                <span class="select is-fullwidth">
+                        <select v-model="administeredVaccine.selectedVaccineManufacturer">
+                            <option value="" disabled hidded> Vaccine Manufacturer </option>
+                            <option v-for="(item, index) in vaccineManufacturer" :key="index">
+                            {{ item }}
+                            </option>
+                        </select>
+                </span>
+            </div>
+        </div>
 
         <div class="columns field is-horizontal">
             <div class="column is-5 field-body">
-              <p class="control is-expanded">
-                <p class="label"> Vaccine Administered </p>
-                <span class="select is-fullwidth">
-                <select v-model="selectedVaccineManufacturer">
-                    <option value="" diabled hidded> Vaccine Manufacturer </option>
-                    <option v-for="(item, index) in vaccineManufacturer" :key="index">
-                      {{ item }}
-                    </option>
-                </select>
-            </span>
+                <input class="input" type="text" placeholder="Batch No." v-model="administeredVaccine.batchNumber">
+            </div>
+            <div class="column is-7 field-body">
+                <input class="input" type="text" placeholder="Health Facility" v-model="administeredVaccine.healthFacilityName">
             </div>
         </div>
 
-        <div v-show="this.selectedVaccineManufacturer">
-            <h1 class="title mb-2"> 1st Dose </h1>
-            <div class="columns field is-horizontal">
-                <div class="column is-3 field-body">
-                    Date Administered
-                    <input class="input" type="date" v-model="firstDose.dateReceived">
-                </div>
+        <p class="label mb-1">Vaccinator Name</p>
+        <div class="columns field is-horizontal">
+            <div class="column is-3 field-body">
+                <input type="text" class="input" placeholder="Last Name" v-model="administeredVaccine.vaccinatorLastName">
+            </div>
 
-                <div class="column is-2 field-body">
-                    Batch No.
-                    <input class="input" type="text" v-model="firstDose.batchNumber">
-                </div>
+            <div class="column is-4 field-body">
+                <input type="text" class="input" placeholder="First Name" v-model="administeredVaccine.vaccinatorFirstName">
+            </div>
 
-                <div class="column is-2 field-body">
-                    Lot No.
-                    <input class="input" type="text" v-model="firstDose.lotNumber">
-                </div>
+            <div class="column is-3 field-body">
+                <input type="text" class="input" placeholder="Middle Name" v-model="administeredVaccine.vaccinatorMiddleName">
+            </div>
 
-                <div class="column is-5 field-body">
-                    Vaccinator
-                    <input class="input" type="text" v-model="firstDose.vaccinatorName">
-                </div>
+            <div class="column is-2 field-body">
+                <input type="text" class="input" placeholder="Suffix" v-model="administeredVaccine.vaccinatorSuffix">
             </div>
         </div>
 
-        <div v-show="selectedVaccineManufacturer != 'JANNSEN' && this.selectedVaccineManufacturer">
-            <h1 class="title mt-5 mb-2"> 2nd Dose </h1>
-            <div class="columns field is-horizontal">
-                <div class="column is-3 field-body">
-                    Date Administered
-                    <input class="input" type="date" v-model="secondDose.dateReceived">
-                </div>
-
-                <div class="column is-2 field-body">
-                    Batch No.
-                    <input class="input" type="text" v-model="secondDose.batchNumber">
-                </div>
-
-                <div class="column is-2 field-body">
-                    Lot No.
-                    <input class="input" type="text" v-model="secondDose.lotNumber">
-                </div>
-
-                <div class="column is-5 field-body">
-                    Vaccinator
-                    <input class="input" type="text" v-model="secondDose.vaccinatorName">
-                </div>
-            </div>
-        </div>
-
-        <div v-show="this.selectedVaccineManufacturer" class="columns">
+        <div class="columns">
             <div class="column">
               <div class="field is-pulled-right">
                 <p class="control">
@@ -92,26 +89,27 @@ export default {
     name: 'VaccinationRecord',
     data() {
         return {
-            selectedVaccineManufacturer: '',
+            administeredVaccine: {
+                selectedDosage: '',
+                dateReceived: '',
+                selectedVaccineManufacturer: '',
+                batchNumber: '',
+                healthFacilityName: '',
+                vaccinatorLastName: '',
+                vaccinatorFirstName: '',
+                vaccinatorMiddleName: '',
+                vaccinatorSuffix: ''
+            },
             vaccineManufacturer: [
                 "SINOVAC",
                 "MODERNA",
                 "PFIZER-BIONTECH",
                 "JANNSEN"
             ],
-            firstDose: {
-                dateReceived: '',
-                batchNumber: '',
-                lotNumber: '',
-                vaccinatorName: ''
-            },
-            secondDose: {
-                dateReceived: '',
-                batchNumber: '',
-                lotNumber: '',
-                vaccinatorName: ''                
-            },
-            healthFacilityName: ''
+            dosage:[
+                "First Dose",
+                "Second Dose"
+            ]     
         }
     }
 };
