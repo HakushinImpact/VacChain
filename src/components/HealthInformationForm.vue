@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="columns is-centered">
-      <div class="column is-half">
+      <div class="column is-three-quarters">
         <p class="title">Health Information</p>
         <form>
 
@@ -12,7 +12,7 @@
             </label>
           </div>
 
-          <div class="columns field is-vcentered">
+          <div class="columns field is-horizontal">
             <div class="column is-3">
               <div class="field">
                 <label class="checkbox">
@@ -64,14 +64,14 @@
             </div>
           </div>
 
-          <div class="mb-2">
+          <div class="mb-3">
             <label class="checkbox">
               <input v-model="isPregnant" type="checkbox" />
               Pregnant?
             </label>
           </div>
 
-          <div>
+          <div class="mt-2">
             <p class="title is-4 my-2">
               Patient Medical History
             </p>

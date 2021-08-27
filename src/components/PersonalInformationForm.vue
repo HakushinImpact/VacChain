@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="columns is-centered">
-      <div class="column is-half">
+      <div class="column is-three-quarters">
         <form>
 
           <div>
