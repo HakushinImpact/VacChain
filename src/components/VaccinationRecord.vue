@@ -41,12 +41,14 @@
         <p class="is-size-6">Batch No: 123456</p>
         <p class="is-size-6">Health Facility Name: DILG Kalibo</p>
         <p class="is-size-5 mt-2">Vaccinator Name: Juan Dela Cruz</p>
-        <!-- <p class="is-size-5">Vaccine Name: {{vaccinee.vaccine_info.name}}</p>
-        <p class="is-size-6">Date of Vaccination: {{vaccinee.vaccine_info.date_of_vaccination}}</p>
-        <p class="is-size-6">Dosage: {{vaccinee.vaccine_info.dosage}}</p>
-        <p class="is-size-6">Batch No: {{vaccinee.vaccine_info.batchNumber}}</p>
-        <p class="is-size-6">Health Facility Name: {{vaccinee.vaccine_info.health_facility}}</p>
-        <p class="is-size-5 mt-2">Vaccinator Name: {{vaccinee.vaccine_info.vaccinator.first_name}} {{vaccinee.vaccine_info.vaccinator.middle_name}} {{vaccinee.vaccine_info.vaccinator.last_name}} {{vaccinee.vaccine_info.vaccinator.suffix}}</p> -->
+        <div v-show="'vaccine_info' in vaccinee">
+          <!-- <p class="is-size-5">Vaccine Name: {{vaccinee.vaccine_info.name}}</p>
+          <p class="is-size-6">Date of Vaccination: {{vaccinee.vaccine_info.date_of_vaccination}}</p>
+          <p class="is-size-6">Dosage: {{vaccinee.vaccine_info.dosage}}</p>
+          <p class="is-size-6">Batch No: {{vaccinee.vaccine_info.batchNumber}}</p>
+          <p class="is-size-6">Health Facility Name: {{vaccinee.vaccine_info.health_facility}}</p>
+          <p class="is-size-5 mt-2">Vaccinator Name: {{vaccinee.vaccine_info.vaccinator.first_name}} {{vaccinee.vaccine_info.vaccinator.middle_name}} {{vaccinee.vaccine_info.vaccinator.last_name}} {{vaccinee.vaccine_info.vaccinator.suffix}}</p> -->
+        </div>
       </div>
     </div>
 
