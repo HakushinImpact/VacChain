@@ -19,7 +19,7 @@
     </div>
     <div v-for="(item, index) in haha" :key="index" class="columns is-centered">
       <div class="column is-7">
-        <VaccineeCard />
+        <VaccineeCard @click-entry="record"/>
       </div>
     </div>
   </div>
@@ -36,6 +36,11 @@ export default {
   data() {
     return{
       haha: ['1', '2', '3']
+    }
+  },
+  methods: {
+    record(){
+      this.$router.push('record');
     }
   }
 };

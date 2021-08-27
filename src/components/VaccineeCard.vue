@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box" @click="$emit('click-entry')">
         <div class="columns is-vcentered">
             <div class="column has-text-centered is-3">
                 <span class="icon is-large fa-5x">

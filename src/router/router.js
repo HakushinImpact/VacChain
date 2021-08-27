@@ -7,6 +7,7 @@ import Manage from '../components/Manage';
 import Login from '../components/Login';
 import Home from '../components/Home';
 import NotFound from '../components/NotFound';
+import VaccinationRecord from '../components/VaccinationRecord';
 
 Vue.use(VueRouter);
 
@@ -36,7 +37,14 @@ const router = new VueRouter({
             {
               path: 'manage',
               name: 'Manage',
-              component: Manage
+              component: Manage,
+              children : [
+                {
+                  path: 'record',
+                  name: 'Vaccination Record',
+                  component: VaccinationRecord
+                }
+              ]
             },
             {
               path: 'new',
