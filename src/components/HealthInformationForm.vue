@@ -13,7 +13,7 @@
           </div>
 
           <div class="columns field is-horizontal">
-            <div class="column is-3">
+            <div class="column is-4">
               <div class="field">
                 <label class="checkbox">
                   <input type="checkbox" />
@@ -21,7 +21,7 @@
                 </label>
               </div>
             </div>
-            <div class="column is-5">
+            <div class="column is-4">
               <div class="field">
                 <div class="control">
                   <input class="input" type="date" />
@@ -168,7 +168,7 @@
           </div>
 
           <div class="buttons has-addons is-right">
-            <button class="button is-primary is-outlined" @click="back">Back</button>
+            <button class="button is-primary is-outlined mr-3" @click="back">Back</button>
             <button class="button is-success">Submit</button>
           </div>
 
