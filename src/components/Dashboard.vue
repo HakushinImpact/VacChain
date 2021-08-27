@@ -12,7 +12,7 @@
                   </span>
                 </div>
                 <div class="column">
-                  <p class="title mt-5 mb-2">750</p>
+                  <p class="title mt-5 mb-2">{{vaccinatedIndividuals}}</p>
                   <p class="label mb-0">Vaccinated</p>
                   <p class="label mb-5">Individuals</p>
                 </div>
@@ -27,7 +27,7 @@
                     <FontAwesomeIcon icon="calendar" />
                 </span>
               </div>
-              <p class="title has-text-centered mb-0">250</p>
+              <p class="title has-text-centered mb-0">{{dailyVaccinations}}</p>
               <p class="label has-text-centered">Daily Vaccinations</p>
             </div>
           </div>
@@ -46,7 +46,14 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      vaccinatedIndividuals: 750,
+      dailyVaccinations: 250
+    }
+  }
+}
 </script>
 
 <style>
