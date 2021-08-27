@@ -330,7 +330,6 @@ export default {
         this.clearEmploymentInfo();
       }
       const personal_data = {philhealth_info: this.philhealth_info, personal_info: this.personal_info}
-      console.log(personal_data)
       this.$emit('next-page', personal_data);
     }
   }

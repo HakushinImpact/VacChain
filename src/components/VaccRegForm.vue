@@ -33,7 +33,7 @@ export default {
     submit($data) {
       this.health_form = $data
       const regform_data = {...this.personal_form, ...this.health_form}
-        this.$router.push({name: 'record', params: {regform_data}});
+      this.$router.push({name: 'Vaccination Record', params: {vaccinee: regform_data}});
     }
   }
 };

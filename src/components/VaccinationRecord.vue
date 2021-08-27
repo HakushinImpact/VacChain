@@ -208,9 +208,11 @@ export default {
   },
   methods: {
     submit(){
-      console.log(this.vaccine_info)
+      const vacc_info = {vaccine_info: [this.vaccine_info]}
+      const vaccinee_data = {...this.vaccinee, ...vacc_info}
     },
     edit(){
+      this.clicked = !this.clicked
       console.log(this.vaccinee)
     },
     get(){
