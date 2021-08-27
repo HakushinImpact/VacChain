@@ -37,14 +37,12 @@ const router = new VueRouter({
             {
               path: 'manage',
               name: 'Manage',
-              component: Manage,
-              children : [
-                {
-                  path: 'record',
-                  name: 'Vaccination Record',
-                  component: VaccinationRecord
-                }
-              ]
+              component: Manage
+            },
+            {
+              path: 'record',
+              name: 'Vaccination Record',
+              component: VaccinationRecord
             },
             {
               path: 'new',
