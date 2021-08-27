@@ -11,13 +11,15 @@
           </div>
           <div class="column">
             <div>
+              <!-- <p class="title is-4">{{vaccinee.personal_info.first_name}} {{vaccinee.personal_info.middle_name}} {{vaccinee.personal_info.last_name}} {{vaccinee.personal_info.suffix}}</p> -->
+              <!-- <p class="subtitle is-6">Vaccination Status: Vaccinated ({{vaccinee.vaccine_info.dosage}} Dose)</p> -->
               <p class="title is-4">John Smith</p>
               <p class="subtitle is-6">Vaccination Status: Vaccinated (1st Dose)</p>
             </div>
-            <div class="mt-2">
-              <p class="is-size-6">Address: Somewhere in the Woods</p>
-              <p class="is-size-6">Contact Number: 09123456789</p>
-            </div>
+            <!-- <div class="mt-2">
+              <p class="is-size-6">Address: {{vaccinee.personal_info.contact.address}}</p>
+              <p class="is-size-6">Contact Number: {{vaccinee.personal_info.contact.number}}</p>
+            </div> -->
           </div>
         </div>
       </div>
@@ -39,6 +41,12 @@
         <p class="is-size-6">Batch No: 123456</p>
         <p class="is-size-6">Health Facility Name: DILG Kalibo</p>
         <p class="is-size-5 mt-2">Vaccinator Name: Juan Dela Cruz</p>
+        <!-- <p class="is-size-5">Vaccine Name: {{vaccinee.vaccine_info.name}}</p>
+        <p class="is-size-6">Date of Vaccination: {{vaccinee.vaccine_info.date_of_vaccination}}</p>
+        <p class="is-size-6">Dosage: {{vaccinee.vaccine_info.dosage}}</p>
+        <p class="is-size-6">Batch No: {{vaccinee.vaccine_info.batchNumber}}</p>
+        <p class="is-size-6">Health Facility Name: {{vaccinee.vaccine_info.health_facility}}</p>
+        <p class="is-size-5 mt-2">Vaccinator Name: {{vaccinee.vaccine_info.vaccinator.first_name}} {{vaccinee.vaccine_info.vaccinator.middle_name}} {{vaccinee.vaccine_info.vaccinator.last_name}} {{vaccinee.vaccine_info.vaccinator.suffix}}</p> -->
       </div>
     </div>
 
@@ -56,7 +64,7 @@
             <div class="column is-3 field-body">
               <p class="label mb-1">Dosage</p>
               <span class="select is-fullwidth">
-                <select v-model="administeredVaccine.selectedDosage">
+                <select v-model="vaccine_info.dosage">
                   <option value="" disabled hidded>Dosage</option>
                   <option v-for="(item, index) in dosage" :key="index">
                     {{ item }}
@@ -70,15 +78,15 @@
               <input
                 class="input"
                 type="date"
-                v-model="administeredVaccine.dateReceived"
+                v-model="vaccine_info.date_of_vaccination"
               />
             </div>
 
             <div class="column is-5 field-body">
               <p class="label mb-1">Vaccine Manufacturer</p>
               <span class="select is-fullwidth">
-                <select v-model="administeredVaccine.selectedVaccineManufacturer">
-                  <option value="" disabled hidded>Vaccine Manufacturer</option>
+                <select v-model="vaccine_info.name">
+                  <option value="" disabled hidden>Vaccine Manufacturer</option>
                   <option
                     v-for="(item, index) in vaccineManufacturer"
                     :key="index"
@@ -96,7 +104,7 @@
                 class="input"
                 type="text"
                 placeholder="Batch No."
-                v-model="administeredVaccine.batchNumber"
+                v-model="vaccine_info.batch_no"
               />
             </div>
             <div class="column is-7 field-body">
@@ -104,7 +112,7 @@
                 class="input"
                 type="text"
                 placeholder="Health Facility"
-                v-model="administeredVaccine.healthFacilityName"
+                v-model="vaccine_info.health_facility"
               />
             </div>
           </div>
@@ -116,7 +124,7 @@
                 type="text"
                 class="input"
                 placeholder="Last Name"
-                v-model="administeredVaccine.vaccinatorLastName"
+                v-model="vaccine_info.vaccinator.last_name"
               />
             </div>
 
@@ -125,7 +133,7 @@
                 type="text"
                 class="input"
                 placeholder="First Name"
-                v-model="administeredVaccine.vaccinatorFirstName"
+                v-model="vaccine_info.vaccinator.first_name"
               />
             </div>
 
@@ -134,7 +142,7 @@
                 type="text"
                 class="input"
                 placeholder="Middle Name"
-                v-model="administeredVaccine.vaccinatorMiddleName"
+                v-model="vaccine_info.vaccinator.middle_name"
               />
             </div>
 
@@ -143,7 +151,7 @@
                 type="text"
                 class="input"
                 placeholder="Suffix"
-                v-model="administeredVaccine.vaccinatorSuffix"
+                v-model="vaccine_info.vaccinator.suffix"
               />
             </div>
           </div>
@@ -152,7 +160,7 @@
             <div class="column">
               <div class="field is-pulled-right">
                 <p class="control">
-                  <button class="button is-success">Submit</button>
+                  <button class="button is-success" @click="submit">Submit</button>
                 </p>
               </div>
             </div>
@@ -168,17 +176,20 @@ export default {
   name: 'VaccinationRecord',
   data() {
     return {
+      vaccinee: {},
       clicked: false,
-      administeredVaccine: {
-        selectedDosage: '',
-        dateReceived: '',
-        selectedVaccineManufacturer: '',
-        batchNumber: '',
-        healthFacilityName: '',
-        vaccinatorLastName: '',
-        vaccinatorFirstName: '',
-        vaccinatorMiddleName: '',
-        vaccinatorSuffix: ''
+      vaccine_info: {
+        name: '',
+        dosage: '',
+        date_of_vaccination: '',
+        batch_no: '',
+        health_facility: '',
+        vaccinator: {
+          last_name: '',
+          first_name: '',
+          middle_name: '',
+          suffix: '',
+        }
       },
       vaccineManufacturer: [
         'Pfizer-BioNTech Comirnaty',
@@ -192,6 +203,14 @@ export default {
         ],
       dosage: ['First Dose', 'Second Dose']
     };
+  },
+  methods: {
+    submit(){
+      console.log(this.vaccine_info)
+    },
+    get(){
+      
+    }
   }
 };
 </script>

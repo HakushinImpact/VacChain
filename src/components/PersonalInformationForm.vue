@@ -15,7 +15,7 @@
               <div class="field">
                 <p class="control is-expanded">
                   <input
-                    v-model="philhealth_info.philHealthNumber"
+                    v-model="philhealth_info.number"
                     class="input"
                     type="input"
                     placeholder="PhilHealth No."
@@ -32,7 +32,7 @@
                       <option
                         v-for="(
                           item, index
-                        ) in philhealth_info.category_options"
+                        ) in category_options"
                         :key="index"
                       >
                         {{ item }}
@@ -54,7 +54,7 @@
                 <p class="control is-expanded">
                   <label class="label">Last Name</label>
                   <input
-                    v-model="personal.lastName"
+                    v-model="personal_info.last_name"
                     class="input"
                     type="text"
                     placeholder="Dela Cruz"
@@ -65,7 +65,7 @@
                 <p class="control is-expanded">
                   <label class="label">First Name</label>
                   <input
-                    v-model="personal.firstName"
+                    v-model="personal_info.first_name"
                     class="input"
                     type="text"
                     placeholder="Juan"
@@ -76,7 +76,7 @@
                 <p class="control is-expanded">
                   <label class="label">Middle Name</label>
                   <input
-                    v-model="personal.middleName"
+                    v-model="personal_info.middle_name"
                     class="input"
                     type="text"
                     placeholder="Protacio"
@@ -87,7 +87,7 @@
                 <p class="control">
                   <label class="label">Suffix</label>
                   <input
-                    v-model="personal.suffix"
+                    v-model="personal_info.suffix"
                     class="input"
                     type="text"
                     placeholder="PhD"
@@ -106,10 +106,10 @@
                 <p class="control">
                   <label class="label">Sex</label>
                   <span class="select is-fullwidth">
-                    <select v-model="personal.sex">
+                    <select v-model="personal_info.sex">
                       <option value="" disabled hidden>Sex</option>
                       <option
-                        v-for="(item, index) in personal.sex_options"
+                        v-for="(item, index) in sex_options"
                         :key="index"
                       >
                         {{ item }}
@@ -122,7 +122,7 @@
                 <p class="control is-expanded">
                   <label class="label">Birthday</label>
                   <input
-                    v-model="personal.birthdate"
+                    v-model="personal_info.birth"
                     class="input"
                     type="date"
                     placeholder="Birthday"
@@ -133,7 +133,7 @@
                 <p class="control is-expanded">
                   <label class="label">Contact Number</label>
                   <input
-                    v-model="personal.contactNumber"
+                    v-model="personal_info.contact.number"
                     class="input"
                     type="text"
                     placeholder="+63xxxxxxxxx"
@@ -147,7 +147,7 @@
             <label class="label">Address</label>
             <p class="control is-expanded">
               <input
-                v-model="personal.fullAddress"
+                v-model="personal_info.contact.address"
                 class="input"
                 type="text"
                 placeholder="Full Address"
@@ -158,10 +158,10 @@
           <div class="field is-grouped">
             <p class="control is-expanded">
               <span class="select is-fullwidth">
-                <select v-model="personal.civil_status">
+                <select v-model="personal_info.contact.civil_status">
                   <option value="" disabled hidden>Civil Status</option>
                   <option
-                    v-for="(item, index) in personal.civil_status_options"
+                    v-for="(item, index) in civil_status_options"
                     :key="index"
                   >
                     {{ item }}
@@ -171,10 +171,10 @@
             </p>
             <p class="control is-expanded">
               <span class="select is-fullwidth">
-                <select v-model="employment.status">
+                <select v-model="personal_info.contact.employment.status">
                   <option value="" disabled hidden>Employment Status</option>
                   <option
-                    v-for="(item, index) in employment.status_options"
+                    v-for="(item, index) in status_options"
                     :key="index"
                   >
                     {{ item }}
@@ -190,7 +190,7 @@
                 <div class="field">
                   <p class="control">
                     <input
-                      v-model="employment.work"
+                      v-model="personal_info.contact.employment.work"
                       class="input"
                       type="text"
                       placeholder="Occupation/Work"
@@ -200,7 +200,7 @@
                 <div class="field">
                   <p class="control">
                     <input
-                      v-model="employment.employer_name"
+                      v-model="personal_info.contact.employment.employer_name"
                       class="input"
                       type="text"
                       placeholder="Employer Name"
@@ -211,7 +211,7 @@
                 <div class="field">
                   <p class="control">
                     <input
-                      v-model="employment.company_name"
+                      v-model="personal_info.contact.employment.company_name"
                       class="input"
                       type="text"
                       placeholder="Company Name"
@@ -225,7 +225,7 @@
                 <div class="field">
                   <p class="control">
                     <input
-                      v-model="employment.company_address"
+                      v-model="personal_info.contact.employment.company_address"
                       class="input"
                       type="text"
                       placeholder="Company Address"
@@ -235,10 +235,10 @@
                 <div class="field">
                   <p class="control is-expanded">
                     <span class="select is-fullwidth">
-                      <select v-model="employment.category">
+                      <select v-model="personal_info.contact.employment.category">
                         <option value="" disabled hidden>Work Category</option>
                         <option
-                          v-for="(item, index) in employment.category_options"
+                          v-for="(item, index) in work_options"
                           :key="index"
                         >
                           {{ item }}
@@ -275,36 +275,38 @@ export default {
         isMember: false,
         number: '',
         category: '',
-        category_options: options.philhealth_category
       },
-      personal: {
-        lastName: '',
-        firstName: '',
-        middleName: '',
+      personal_info: {
+        last_name: '',
+        first_name: '',
+        middle_name: '',
         suffix: '',
         sex: '',
-        sex_options: options.sex,
-        birthdate: '',
-        contactNumber: '',
-        fullAddress: '',
-        civil_status: '',
-        civil_status_options: options.civil_status
+        birth: '',
+        contact: {
+          number: '',
+          address: '',
+          civil_status: '',
+          employment: {
+            status: '',
+            work: '',
+            employer_name: '',
+            company_name: '',
+            company_address: '',
+            category: '',
+          }
+        }
       },
-      employment: {
-        status: '',
-        status_options: options.employment_status,
-        work: '',
-        employer_name: '',
-        company_name: '',
-        company_address: '',
-        category: '',
-        category_options: options.work_categories
-      }
+      category_options: options.philhealth_category,
+      sex_options: options.sex,
+      civil_status_options: options.civil_status,
+      status_options: options.employment_status,
+      work_options: options.work_categories
     };
   },
   computed: {
     isEmployed() {
-      return this.employment.status && this.employment.status !== 'Unemployed';
+      return this.personal_info.contact.employment.status && this.personal_info.contact.employment.status !== 'Unemployed';
     }
   },
   methods: {
@@ -313,12 +315,12 @@ export default {
       this.philhealth_info.category = '';
     },
     clearEmploymentInfo() {
-      (this.employment.status = ''),
-        (this.employment.work = ''),
-        (this.employment.employerName = ''),
-        (this.employment.companyName = ''),
-        (this.employment.companyAddress = ''),
-        (this.employment.selectedWorkCategory = '');
+      (this.personal_info.contact.employment.status),
+      (this.personal_info.contact.employment.work = ''),
+      (this.personal_info.contact.employment.employerName = ''),
+      (this.personal_info.contact.employment.companyName = ''),
+      (this.personal_info.contact.employment.companyAddress = ''),
+      (this.personal_info.contact.employment.selectedWorkCategory = '');
     },
     next() {
       if (!this.philhealth_info.isMember) {
