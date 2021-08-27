@@ -243,7 +243,7 @@
                 <p class="control is-expanded">
                   <span class="select is-fullwidth">
                     <select v-model="employment.selectedWorkCategory">
-                      <option selected> Work Category </option>
+                      <option value="" disabled hidden> Work Category </option>
                       <option v-for="(item, index) in employment.workCategory" :key="index">
                         {{ item }}
                       </option>
@@ -309,7 +309,7 @@ export default {
         employerName: '',
         companyName: '',
         companyAddress: '',
-        selectedWorkCategory: 'Work Category',
+        selectedWorkCategory: '',
         workCategory: ['Accountant',
         'Airline', 
         'Call Center', 
@@ -335,7 +335,25 @@ export default {
     }
   },
   methods: {
+    clearPhilHealthInfo() {
+      this.philHealthInfo.philHealthNumber = '',
+      this.philHealthInfo.selectedPhilHealthCategory = ''
+    },
+    clearEmploymentInfo() {
+      this.employment.selectedEmploymentStatus = '',
+      this.employment.work = '',
+      this.employment.employerName = '',
+      this.employment.companyName = '',
+      this.employment.companyAddress = '',
+      this.employment.selectedWorkCategory = ''
+    },
     next() {
+      if(this.philHealthInfo.isPhilHealthMemeber) {
+        this.clearPhilHealthInfo
+      }
+      if(this.isEmployed){
+        this.clearEmploymentInfo
+      }
       this.$emit('next-page')
     }
   }
