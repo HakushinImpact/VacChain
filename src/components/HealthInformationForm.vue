@@ -7,7 +7,7 @@
 
           <div class="mb-2">
             <label class="checkbox">
-              <input type="checkbox" />
+              <input type="checkbox" v-model="hadContact">
               Had interaction with COVID-19 patient?
             </label>
           </div>
@@ -16,7 +16,7 @@
             <div class="column is-4">
               <div class="field">
                 <label class="checkbox">
-                  <input type="checkbox" />
+                  <input type="checkbox" v-model="isDiagnosed">
                   Diagnosed with COVID-19?
                 </label>
               </div>
@@ -24,7 +24,7 @@
             <div class="column is-4">
               <div class="field">
                 <div class="control">
-                  <input class="input" type="date" />
+                  <input class="input" type="date" v-model="dateOfPositiveResult">
                 </div>
                 <p class="help">Date of first positive result/specimen collection.</p>
               </div>
@@ -50,7 +50,7 @@
             <div class="column is-3">
               <div class="field">
                 <label class="checkbox">
-                  <input type="checkbox" />
+                  <input type="checkbox" v-model="withComorbidity">
                   With Comorbidity?
                 </label>
               </div>
@@ -58,7 +58,7 @@
             <div class="column is-9">
                <div class="field is-fullwidth">
                   <p class="control is-expanded">
-                    <input type="text" class="input" placeholder="Name of Comorbidity" />
+                    <input type="text" class="input" placeholder="Name of Comorbidity" v-model="comorbidityName">
                   </p>
                 </div>
             </div>
@@ -81,34 +81,34 @@
             <div class="column">
               <div class="label is-5">History of:</div>
               <div>
-                <label class="checkbox">
-                  <input type="checkbox" />
+                <label for="diabetesMellitus" class="checkbox">
+                  <input type="checkbox" id="diabetesMellitus" value="Diabetes Mellitus" v-model="checkedHistoryOf">
                   Diabetes Mellitus
                 </label>
               </div>
               <div>
-                <label class="checkbox">
-                  <input type="checkbox" />
+                <label for="bronchialAsthma" class="checkbox">
+                  <input type="checkbox" id="bronchialAsthma" value="Bronchial Asthma" v-model="checkedHistoryOf">
                   Bronchial Asthma
                 </label>
               </div>
               <div>
-                <label class="checkbox">
-                  <input type="checkbox" />
+                <label for="hypertension" class="checkbox">
+                  <input type="checkbox" id="hypertension" value="Hypertension" v-model="checkedHistoryOf">
                   Hypertension
                 </label>
               </div>
               <div>
-                <label class="checkbox">
-                  <input type="checkbox" />
+                <label for="cancer" class="checkbox">
+                  <input type="checkbox" id="cancer" value="Cancer" v-model="checkedHistoryOf">
                   Cancer
                 </label>
               </div>
               <div>
-                <label class="checkbox">
-                  <input type="checkbox" />
+                <label for="others" class="checkbox">
+                  <input type="checkbox" hidden id="others" :value="othersHistoryOf" v-model="checkedHistoryOf">
                   Others:
-                  <input type="text" class="input" placeholder="Please Specify...">
+                  <input type="text" class="input" placeholder="Please Specify..."  v-model="othersHistoryOf">
                 </label>
               </div>
             </div>
@@ -118,26 +118,26 @@
               <div class="columns">
                 <div class="column">
                   <div>
-                    <label class="checkbox">
-                      <input type="checkbox" />
+                    <label for="drugAllergy" class="checkbox">
+                      <input type="checkbox" id="drugAllergy" value="Drug Allergy" v-model="checkedHistoryOfAllergies">
                       Drug Allergy
                     </label>
                   </div>
                   <div>
-                    <label class="checkbox">
-                      <input type="checkbox" />
+                    <label for="foodAllergy" class="checkbox">
+                      <input type="checkbox" id="foodAllergy" value="Food Allergy" v-model="checkedHistoryOfAllergies">
                       Food Allergy
                     </label>
                   </div>
                   <div>
-                    <label class="checkbox">
-                      <input type="checkbox" />
+                    <label for="insect" class="checkbox">
+                      <input type="checkbox" id="insect" value="Insect" v-model="checkedHistoryOfAllergies">
                       Insect
                     </label>
                   </div>
                   <div>
-                    <label class="checkbox">
-                      <input type="checkbox" />
+                    <label for="latexAllergy" class="checkbox">
+                      <input type="checkbox" id="latexAllergy" value="Latex Allergy" v-model="checkedHistoryOfAllergies">
                       Latex Allergy
                     </label>
                   </div>
@@ -145,23 +145,24 @@
 
                 <div class="column">
                   <div>
-                    <label class="checkbox">
-                      <input type="checkbox" />
+                    <label for="moldAllergy" class="checkbox">
+                      <input type="checkbox" id="moldAllergy" value="Mold Allergy" v-model="checkedHistoryOfAllergies">
                       Mold Allergy
                     </label>
                   </div>
                   <div>
-                    <label class="checkbox">
-                      <input type="checkbox" />
+                    <label for="petAllergy" class="checkbox">
+                      <input type="checkbox" id="petAllergy" value="Pet Allergy" v-model="checkedHistoryOfAllergies">
                       Pet Allergy
                     </label>
                   </div>
                   <div>
-                    <label class="checkbox">
-                      <input type="checkbox" />
+                    <label for="pollenAllergy" class="checkbox">
+                      <input type="checkbox" id="pollenAllergy" value="Pollen Alergy" v-model="checkedHistoryOfAllergies">
                       Pollen Allergy
                     </label>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -183,7 +184,9 @@ export default {
   name: 'HealthInformationForm',
   data() {
     return {
-      isPregnant: false,
+      hadContact: false,
+      isDiagnosed: false,
+      dateOfPositiveResult: '',
       selectedCovidClassification: 'COVID-19 Classification',
       covidClassification: [
         'Asymptomatic',
@@ -191,7 +194,13 @@ export default {
         'Moderate',
         'Severe',
         'Critical'
-      ]
+      ],
+      withComorbidity: false,
+      comorbidityName: '',
+      isPregnant: false,
+      othersHistoryOf: '',
+      checkedHistoryOf: [],
+      checkedHistoryOfAllergies: []
     };
   },
   computed: {},
