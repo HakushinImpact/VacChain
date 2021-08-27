@@ -8,10 +8,18 @@
       </div>
       <div class="column">
         <div>
-          <!-- <p class="title is-4">{{vaccinee.personal_info.first_name}} {{vaccinee.personal_info.middle_name}} {{vaccinee.personal_info.last_name}} {{vaccinee.personal_info.suffix}}</p>
-          <p class="subtitle is-6">Vaccination Status: Vaccinated ({{vaccinee.vaccine_info.dosage}} Dose)</p> -->
-          <p class="title is-4">John Smith</p>
-          <p class="subtitle is-6">Vaccination Status: Vaccinated (1st Dose)</p>
+          <p class="title is-4">
+            {{ vaccinee.personal_info.first_name }}
+            {{ vaccinee.personal_info.middle_name }}
+            {{ vaccinee.personal_info.last_name }}
+            {{ vaccinee.personal_info.suffix }}
+          </p>
+          <p class="subtitle is-6">
+            Vaccination Status: Vaccinated ({{
+              vaccinee.vaccine_info.dosage
+            }}
+            Dose)
+          </p>
         </div>
       </div>
     </div>
