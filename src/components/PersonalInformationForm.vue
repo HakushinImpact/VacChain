@@ -6,12 +6,12 @@
 
           <div>
             <label class="checkbox">
-              <input type="checkbox" v-model="philHealthInfo.isPhilHealthMemeber"/>
+              <input type="checkbox" v-model="philHealthInfo.isPhilHealthMember"/>
                 PhilHealth Member?
             </label>
           </div>
 
-          <div v-show="philHealthInfo.isPhilHealthMemeber"  class="columns field is-horizontal mt-1">
+          <div v-show="philHealthInfo.isPhilHealthMember"  class="columns field is-horizontal mt-1">
             <div class="column is-half field-body">
               <div class="field">
                 <label class="label">PhilHealth Number</label>
@@ -46,7 +46,7 @@
             <h1 class="title mt-3">Personal Details</h1>
           </div>
 
-          <label class="label">Patient Name</label>
+          <label class="label">Vaccinee Name</label>
           <div class="columns field is-horizontal">
             <div class="column is-3 field-body">
               <div class="field">
@@ -279,7 +279,7 @@ export default {
   data() {
     return {
       philHealthInfo: {
-        isPhilHealthMemeber: false,
+        isPhilHealthMember: false,
         philHealthNumber: '',
         selectedPhilHealthCategory: '',
         category: ['A0', 'A1', 'A2', 'A3'],
@@ -348,7 +348,7 @@ export default {
       this.employment.selectedWorkCategory = ''
     },
     next() {
-      if(this.philHealthInfo.isPhilHealthMemeber) {
+      if(this.philHealthInfo.isPhilHealthMember) {
         this.clearPhilHealthInfo
       }
       if(this.isEmployed){
