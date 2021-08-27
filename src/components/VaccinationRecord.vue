@@ -29,7 +29,7 @@
       <div class="column is-three-quarters">
         <span class="icon-text">
           <span class="title is-3 mr-2">Vaccine History</span>
-          <button class="button is-small" @click="clicked = !clicked">
+          <button class="button is-small" @click="edit">
             <span class="icon is-small">
               <FontAwesomeIcon icon="edit"/>
             </span>
@@ -174,9 +174,11 @@
 <script>
 export default {
   name: 'VaccinationRecord',
+  props: {
+    vaccinee: {},
+  },
   data() {
     return {
-      vaccinee: {},
       clicked: false,
       vaccine_info: {
         name: '',
@@ -207,6 +209,9 @@ export default {
   methods: {
     submit(){
       console.log(this.vaccine_info)
+    },
+    edit(){
+      console.log(this.vaccinee)
     },
     get(){
       
