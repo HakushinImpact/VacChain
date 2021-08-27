@@ -180,7 +180,16 @@ export default {
         vaccinatorMiddleName: '',
         vaccinatorSuffix: ''
       },
-      vaccineManufacturer: ['SINOVAC', 'MODERNA', 'PFIZER-BIONTECH', 'JANNSEN'],
+      vaccineManufacturer: [
+        'Pfizer-BioNTech Comirnaty',
+        'Oxfor-AstraZeneca', 
+        'Sinovac CoronaVac', 
+        'Gamaleya Sputnik V',
+        'Johnson & Johnson (Jannsen)',
+        'Bharat BioTech',
+        'Moderna',
+        'Novavax'
+        ],
       dosage: ['First Dose', 'Second Dose']
     };
   }
