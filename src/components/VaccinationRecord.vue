@@ -36,7 +36,7 @@
           <p class="is-size-5">Vaccine Name: {{vaccine.name}}</p>
           <p class="is-size-6">Date of Vaccination: {{vaccine.date_of_vaccination}}</p>
           <p class="is-size-6">Dosage: {{vaccine.dosage}}</p>
-          <p class="is-size-6">Batch No: {{vaccine.batchNumber}}</p>
+          <p class="is-size-6">Batch No: {{vaccine.batch_no}}</p>
           <p class="is-size-6">Health Facility Name: {{vaccine.health_facility}}</p>
           <p class="is-size-5 mt-2">Vaccinator Name: {{vaccine.vaccinator.first_name}} {{vaccine.vaccinator.middle_name}} {{vaccine.vaccinator.last_name}} {{vaccine.vaccinator.suffix}}</p>
         </div>
@@ -216,11 +216,12 @@ export default {
     submit(){
       let vaccines
       try {
-        vaccines = this.vaccinee.vaccine_info.concat(this.vaccine_info)
+        vaccines = this.vaccinee.vaccine_info.push(this.vaccine_info)
+        console.log(vaccines)
       } catch (error) {
         vaccines = this.vaccine_info
       }
-      const vacc_info = {vaccine_info: [vaccines]}
+      const vacc_info = {vaccine_info: vaccines}
       axios
         .post('http://localhost:5000/updateEntry', {
           id: this.id,
