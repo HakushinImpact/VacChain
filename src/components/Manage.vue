@@ -43,7 +43,7 @@ export default {
   },
   watch: {
     search() {
-      if (search) {
+      if (this.search) {
         axios
           .get(`http://localhost:5000/getEntry?id=${this.search}`)
           .then(response => {
