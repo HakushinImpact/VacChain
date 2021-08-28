@@ -233,7 +233,7 @@ export default {
     this.getVaccinee();
   },
   methods: {
-    submit() {
+    async submit() {
       let vaccines;
       try {
         vaccines = this.vaccinee.vaccine_info.push(this.vaccine_info);
@@ -242,22 +242,21 @@ export default {
         vaccines = [this.vaccine_info];
       }
       const vacc_info = { vaccine_info: vaccines };
-      axios.post('http://localhost:5000/updateEntry', {
+      await axios.post('http://localhost:5000/updateEntry', {
         id: this.id,
         data: vacc_info
       });
 
-      this.getVaccinee();
+      await this.getVaccinee();
     },
     edit() {
       this.clicked = !this.clicked;
     },
-    getVaccinee() {
-      axios
+    async getVaccinee() {
+      await axios
         .get('http://localhost:5000/getEntry?id=' + this.id)
         .then(response => {
           this.vaccinee = response.data;
-          console.log(this.vaccinee);
         });
     }
   }
