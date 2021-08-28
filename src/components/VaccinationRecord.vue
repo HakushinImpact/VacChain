@@ -35,6 +35,9 @@
               </p>
             </div>
           </div>
+          <div class="column">
+            <QRGenerator :hash="id" />
+          </div>
         </div>
       </div>
     </div>
@@ -193,9 +196,13 @@
 
 <script>
 import axios from 'axios';
+import QRGenerator from './QRGenerator.vue'
 
 export default {
   name: 'VaccinationRecord',
+  components: {
+    QRGenerator
+  },
   props: {
     id: String
   },

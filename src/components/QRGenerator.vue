@@ -1,5 +1,5 @@
 <template>
-  <QRcodeVue :value="hash" :size="300" level="H" renderAs="svg" />
+  <QRcodeVue :value="hash" :size="250" level="H" renderAs="svg" />
 </template>
 
 <script>
