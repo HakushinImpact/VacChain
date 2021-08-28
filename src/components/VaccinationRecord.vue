@@ -10,12 +10,29 @@
           </div>
           <div class="column">
             <div>
-              <p class="title is-4">{{vaccinee.personal_info.first_name}} {{vaccinee.personal_info.middle_name}} {{vaccinee.personal_info.last_name}} {{vaccinee.personal_info.suffix}}</p>
-              <p v-if="!(typeof vaccinee.vaccine_info === 'undefined')" class="subtitle is-6">Vaccination Status: Vaccinated ({{vaccinee.vaccine_info.dosage}} Dose)</p>
+              <p class="title is-4">
+                {{ vaccinee.personal_info.first_name }}
+                {{ vaccinee.personal_info.middle_name }}
+                {{ vaccinee.personal_info.last_name }}
+                {{ vaccinee.personal_info.suffix }}
+              </p>
+              <p
+                v-if="!(typeof vaccinee.vaccine_info === 'undefined')"
+                class="subtitle is-6"
+              >
+                Vaccination Status: Vaccinated ({{
+                  vaccinee.vaccine_info.dosage
+                }}
+                Dose)
+              </p>
             </div>
             <div class="mt-2">
-              <p class="is-size-6">Address: {{vaccinee.personal_info.contact.address}}</p>
-              <p class="is-size-6">Contact Number: {{vaccinee.personal_info.contact.number}}</p>
+              <p class="is-size-6">
+                Address: {{ vaccinee.personal_info.contact.address }}
+              </p>
+              <p class="is-size-6">
+                Contact Number: {{ vaccinee.personal_info.contact.number }}
+              </p>
             </div>
           </div>
         </div>
@@ -33,12 +50,20 @@
           </button>
         </span>
         <div v-for="(vaccine, index) in vaccinee.vaccine_info" :key="index">
-          <p class="is-size-5">Vaccine Name: {{vaccine.name}}</p>
-          <p class="is-size-6">Date of Vaccination: {{vaccine.date_of_vaccination}}</p>
-          <p class="is-size-6">Dosage: {{vaccine.dosage}}</p>
-          <p class="is-size-6">Batch No: {{vaccine.batch_no}}</p>
-          <p class="is-size-6">Health Facility Name: {{vaccine.health_facility}}</p>
-          <p class="is-size-5 mt-2">Vaccinator Name: {{vaccine.vaccinator.first_name}} {{vaccine.vaccinator.middle_name}} {{vaccine.vaccinator.last_name}} {{vaccine.vaccinator.suffix}}</p>
+          <p class="is-size-5">Vaccine Name: {{ vaccine.name }}</p>
+          <p class="is-size-6">
+            Date of Vaccination: {{ vaccine.date_of_vaccination }}
+          </p>
+          <p class="is-size-6">Dosage: {{ vaccine.dosage }}</p>
+          <p class="is-size-6">Batch No: {{ vaccine.batch_no }}</p>
+          <p class="is-size-6">
+            Health Facility Name: {{ vaccine.health_facility }}
+          </p>
+          <p class="is-size-5 mt-2">
+            Vaccinator Name: {{ vaccine.vaccinator.first_name }}
+            {{ vaccine.vaccinator.middle_name }}
+            {{ vaccine.vaccinator.last_name }} {{ vaccine.vaccinator.suffix }}
+          </p>
         </div>
       </div>
     </div>
@@ -172,7 +197,7 @@ import axios from 'axios';
 export default {
   name: 'VaccinationRecord',
   props: {
-    id: String,
+    id: String
   },
   data() {
     return {
@@ -193,44 +218,48 @@ export default {
       },
       vaccineManufacturer: [
         'Pfizer-BioNTech Comirnaty',
-        'Oxfor-AstraZeneca', 
-        'Sinovac CoronaVac', 
+        'Oxfor-AstraZeneca',
+        'Sinovac CoronaVac',
         'Gamaleya Sputnik V',
         'Johnson & Johnson (Jannsen)',
         'Bharat BioTech',
         'Moderna',
         'Novavax'
-        ],
+      ],
       dosage: ['First Dose', 'Second Dose']
     };
   },
-  created(){
-    axios
-      .get('http://localhost:5000/getEntry?id=' + this.id)
-      .then(response => {
-        this.vaccinee = response.data
-        console.log(this.vaccinee)
-    });
+  created() {
+    this.getVaccinee();
   },
   methods: {
-    submit(){
-      let vaccines
+    submit() {
+      let vaccines;
       try {
-        vaccines = this.vaccinee.vaccine_info.push(this.vaccine_info)
-        console.log(vaccines)
+        vaccines = this.vaccinee.vaccine_info.push(this.vaccine_info);
+        console.log(vaccines);
       } catch (error) {
-        vaccines = [this.vaccine_info]
+        vaccines = [this.vaccine_info];
       }
-      const vacc_info = {vaccine_info: vaccines}
+      const vacc_info = { vaccine_info: vaccines };
+      axios.post('http://localhost:5000/updateEntry', {
+        id: this.id,
+        data: vacc_info
+      });
+
+      this.getVaccinee();
+    },
+    edit() {
+      this.clicked = !this.clicked;
+    },
+    getVaccinee() {
       axios
-        .post('http://localhost:5000/updateEntry', {
-          id: this.id,
-          data: vacc_info
-        })
-    },
-    edit(){
-      this.clicked = !this.clicked
-    },
+        .get('http://localhost:5000/getEntry?id=' + this.id)
+        .then(response => {
+          this.vaccinee = response.data;
+          console.log(this.vaccinee);
+        });
+    }
   }
 };
 </script>
