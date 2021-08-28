@@ -5,15 +5,16 @@
         <div class="mb-6">
           <p class="control has-icons-left">
             <input
-              v-model="search"
+              v-model.lazy="search"
               class="input is-rounded"
               type="text"
-              placeholder="Search Record"
+              placeholder="Search Record by ID"
             />
             <span class="icon is-small is-left">
               <FontAwesomeIcon icon="search" />
             </span>
           </p>
+          <p class="help">Press Enter to search.</p>
         </div>
       </div>
     </div>
@@ -36,11 +37,22 @@ export default {
   },
   data() {
     return {
+      search: '',
       vaccinees: null
     };
   },
+  watch: {
+    search() {
+      console.log(this.search);
+      axios
+        .get(`http://localhost:5000/getEntry?id=${this.search}`)
+        .then(response => {
+          this.vaccinees = [response.data];
+        });
+    }
+  },
   created() {
-    axios.get('http://localhost:5000/getEntries').then(response => {
+    axios.post('http://localhost:5000/getEntries').then(response => {
       this.vaccinees = response.data;
     });
   },
