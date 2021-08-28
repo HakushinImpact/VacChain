@@ -41,13 +41,15 @@
         <p class="is-size-6">Batch No: 123456</p>
         <p class="is-size-6">Health Facility Name: DILG Kalibo</p>
         <p class="is-size-5 mt-2">Vaccinator Name: Juan Dela Cruz</p>
-        <div v-show="'vaccine_info' in vaccinee">
-          <!-- <p class="is-size-5">Vaccine Name: {{vaccinee.vaccine_info.name}}</p>
-          <p class="is-size-6">Date of Vaccination: {{vaccinee.vaccine_info.date_of_vaccination}}</p>
-          <p class="is-size-6">Dosage: {{vaccinee.vaccine_info.dosage}}</p>
-          <p class="is-size-6">Batch No: {{vaccinee.vaccine_info.batchNumber}}</p>
-          <p class="is-size-6">Health Facility Name: {{vaccinee.vaccine_info.health_facility}}</p>
-          <p class="is-size-5 mt-2">Vaccinator Name: {{vaccinee.vaccine_info.vaccinator.first_name}} {{vaccinee.vaccine_info.vaccinator.middle_name}} {{vaccinee.vaccine_info.vaccinator.last_name}} {{vaccinee.vaccine_info.vaccinator.suffix}}</p> -->
+        <div v-if="!(typeof vaccinee === 'undefined')">
+          <div v-for="(vaccine, index) in vaccinee.vaccine_info" :key="index">
+            <!-- <p class="is-size-5">Vaccine Name: {{vaccine.name}}</p>
+            <p class="is-size-6">Date of Vaccination: {{vaccine.date_of_vaccination}}</p>
+            <p class="is-size-6">Dosage: {{vaccine.dosage}}</p>
+            <p class="is-size-6">Batch No: {{vaccinee.batchNumber}}</p>
+            <p class="is-size-6">Health Facility Name: {{vaccine.health_facility}}</p>
+            <p class="is-size-5 mt-2">Vaccinator Name: {{vaccinee.vaccinator.first_name}} {{vaccinee.vaccinator.middle_name}} {{vaccinee.vaccinator.last_name}} {{vaccinee.vaccinator.suffix}}</p> -->
+          </div>
         </div>
       </div>
     </div>
@@ -210,8 +212,15 @@ export default {
   },
   methods: {
     submit(){
-      const vacc_info = {vaccine_info: [this.vaccine_info]}
+      let vaccines
+      try {
+        vaccines = this.vaccinee.vaccine_info.concat(this.vaccine_info)
+      } catch (error) {
+        vaccines = this.vaccine_info
+      }
+      const vacc_info = {vaccine_info: [vaccines]}
       const vaccinee_data = {...this.vaccinee, ...vacc_info}
+      console.log(vaccinee_data)
     },
     edit(){
       this.clicked = !this.clicked
