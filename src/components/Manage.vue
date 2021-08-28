@@ -43,12 +43,13 @@ export default {
   },
   watch: {
     search() {
-      console.log(this.search);
-      axios
-        .get(`http://localhost:5000/getEntry?id=${this.search}`)
-        .then(response => {
-          this.vaccinees = [response.data];
-        });
+      if (search) {
+        axios
+          .get(`http://localhost:5000/getEntry?id=${this.search}`)
+          .then(response => {
+            this.vaccinees = [response.data];
+          });
+      }
     }
   },
   created() {
