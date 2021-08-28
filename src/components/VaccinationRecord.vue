@@ -219,7 +219,7 @@ export default {
         vaccines = this.vaccinee.vaccine_info.push(this.vaccine_info)
         console.log(vaccines)
       } catch (error) {
-        vaccines = this.vaccine_info
+        vaccines = [this.vaccine_info]
       }
       const vacc_info = {vaccine_info: vaccines}
       axios
