@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <div class="columns is-centered my-6">
       <div class="column is-three-quarters">
         <div class="columns is-vcentered is-centered">
@@ -11,10 +10,12 @@
           </div>
           <div class="column">
             <div>
-              <!-- <p class="title is-4">{{vaccinee.personal_info.first_name}} {{vaccinee.personal_info.middle_name}} {{vaccinee.personal_info.last_name}} {{vaccinee.personal_info.suffix}}</p> -->
-              <!-- <p class="subtitle is-6">Vaccination Status: Vaccinated ({{vaccinee.vaccine_info.dosage}} Dose)</p> -->
-              <p class="title is-4">John Smith</p>
-              <p class="subtitle is-6">Vaccination Status: Vaccinated (1st Dose)</p>
+              <p class="title is-4">{{vaccinee.personal_info.first_name}} {{vaccinee.personal_info.middle_name}} {{vaccinee.personal_info.last_name}} {{vaccinee.personal_info.suffix}}</p> -->
+              <p class="subtitle is-6">Vaccination Status: Vaccinated ({{vaccinee.vaccine_info.dosage}} Dose)</p>
+              <!-- <p class="title is-4">John Smith</p>
+              <p class="subtitle is-6">
+                Vaccination Status: Vaccinated (1st Dose)
+              </p> -->
             </div>
             <!-- <div class="mt-2">
               <p class="is-size-6">Address: {{vaccinee.personal_info.contact.address}}</p>
@@ -31,7 +32,7 @@
           <span class="title is-3 mr-2">Vaccine History</span>
           <button class="button is-small" @click="edit">
             <span class="icon is-small">
-              <FontAwesomeIcon icon="edit"/>
+              <FontAwesomeIcon icon="edit" />
             </span>
           </button>
         </span>
@@ -55,7 +56,7 @@
     </div>
 
     <div v-show="clicked">
-      <hr>
+      <hr />
       <div class="columns is-centered">
         <div class="column is-three-quarters">
           <p class="title is-1 has-text-centered">Vaccination Record Form</p>
@@ -164,7 +165,9 @@
             <div class="column">
               <div class="field is-pulled-right">
                 <p class="control">
-                  <button class="button is-success" @click="submit">Submit</button>
+                  <button class="button is-success" @click="submit">
+                    Submit
+                  </button>
                 </p>
               </div>
             </div>
@@ -176,14 +179,17 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'VaccinationRecord',
-  props: {
-    vaccinee: {},
-  },
+  // props: {
+  //   vaccinee: {},
+  // },
   data() {
     return {
       clicked: false,
+      vaccinee: {},
       vaccine_info: {
         name: '',
         dosage: '',
@@ -194,41 +200,46 @@ export default {
           last_name: '',
           first_name: '',
           middle_name: '',
-          suffix: '',
+          suffix: ''
         }
       },
       vaccineManufacturer: [
         'Pfizer-BioNTech Comirnaty',
-        'Oxfor-AstraZeneca', 
-        'Sinovac CoronaVac', 
+        'Oxfor-AstraZeneca',
+        'Sinovac CoronaVac',
         'Gamaleya Sputnik V',
         'Johnson & Johnson (Jannsen)',
         'Bharat BioTech',
         'Moderna',
         'Novavax'
-        ],
+      ],
       dosage: ['First Dose', 'Second Dose']
     };
   },
+  created() {
+    const id = this.$route.params.id;
+
+    axios.get(`http://localhost:5000/getEntry?id=${id}`).then(response => {
+      this.vaccinee = response.data;
+    });
+  },
   methods: {
-    submit(){
-      let vaccines
+    submit() {
+      let vaccines;
       try {
-        vaccines = this.vaccinee.vaccine_info.concat(this.vaccine_info)
+        vaccines = this.vaccinee.vaccine_info.concat(this.vaccine_info);
       } catch (error) {
-        vaccines = this.vaccine_info
+        vaccines = this.vaccine_info;
       }
-      const vacc_info = {vaccine_info: [vaccines]}
-      const vaccinee_data = {...this.vaccinee, ...vacc_info}
-      console.log(vaccinee_data)
+      const vacc_info = { vaccine_info: [vaccines] };
+      const vaccinee_data = { ...this.vaccinee, ...vacc_info };
+      console.log(vaccinee_data);
     },
-    edit(){
-      this.clicked = !this.clicked
-      console.log(this.vaccinee)
+    edit() {
+      this.clicked = !this.clicked;
+      console.log(this.vaccinee);
     },
-    get(){
-      
-    }
+    get() {}
   }
 };
 </script>

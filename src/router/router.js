@@ -40,7 +40,7 @@ const router = new VueRouter({
               component: Manage
             },
             {
-              path: 'record',
+              path: 'record/:id',
               name: 'Vaccination Record',
               component: VaccinationRecord,
               props: true
