@@ -49,17 +49,22 @@ export default {
           .then(response => {
             this.vaccinees = [response.data];
           });
+      } else {
+        this.getEntries();
       }
     }
   },
   created() {
-    axios.post('http://localhost:5000/getEntries').then(response => {
-      this.vaccinees = response.data;
-    });
+    this.getEntries();
   },
   methods: {
     record(event) {
       this.$router.push({ name: 'Vaccination Record', params: { id: event } });
+    },
+    getEntries() {
+      axios.post('http://localhost:5000/getEntries').then(response => {
+        this.vaccinees = response.data;
+      });
     }
   }
 };
