@@ -243,11 +243,12 @@ export default {
     async submit() {
       let vaccines;
       try {
-        vaccines = this.vaccinee.vaccine_info.push(this.vaccine_info);
-        console.log(vaccines);
+        vaccines = this.vaccinee.vaccine_info
+        vaccines.push(this.vaccine_info);
       } catch (error) {
         vaccines = [this.vaccine_info];
       }
+      console.log(vaccines);
       const vacc_info = { vaccine_info: vaccines };
       await axios.post('http://localhost:5000/updateEntry', {
         id: this.id,
@@ -265,6 +266,7 @@ export default {
         .then(response => {
           this.vaccinee = response.data;
         });
+      console.log(this.vaccinee.vaccine_info)
     }
   }
 };
