@@ -32,14 +32,14 @@
             </span>
           </button>
         </span>
-          <div v-for="(vaccine, index) in vaccinee.vaccine_info" :key="index">
-            <p class="is-size-5">Vaccine Name: {{vaccine.name}}</p>
-            <p class="is-size-6">Date of Vaccination: {{vaccine.date_of_vaccination}}</p>
-            <p class="is-size-6">Dosage: {{vaccine.dosage}}</p>
-            <p class="is-size-6">Batch No: {{vaccinee.batchNumber}}</p>
-            <p class="is-size-6">Health Facility Name: {{vaccine.health_facility}}</p>
-            <p class="is-size-5 mt-2">Vaccinator Name: {{vaccinee.vaccinator.first_name}} {{vaccinee.vaccinator.middle_name}} {{vaccinee.vaccinator.last_name}} {{vaccinee.vaccinator.suffix}}</p>
-          </div>
+        <div v-for="(vaccine, index) in vaccinee.vaccine_info" :key="index">
+          <p class="is-size-5">Vaccine Name: {{vaccine.name}}</p>
+          <p class="is-size-6">Date of Vaccination: {{vaccine.date_of_vaccination}}</p>
+          <p class="is-size-6">Dosage: {{vaccine.dosage}}</p>
+          <p class="is-size-6">Batch No: {{vaccine.batchNumber}}</p>
+          <p class="is-size-6">Health Facility Name: {{vaccine.health_facility}}</p>
+          <p class="is-size-5 mt-2">Vaccinator Name: {{vaccine.vaccinator.first_name}} {{vaccine.vaccinator.middle_name}} {{vaccine.vaccinator.last_name}} {{vaccine.vaccinator.suffix}}</p>
+        </div>
       </div>
     </div>
 
