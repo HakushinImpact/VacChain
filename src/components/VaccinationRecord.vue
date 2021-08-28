@@ -206,7 +206,7 @@ export default {
   },
   created(){
     axios
-      .get('http://localhost:5000/getEntry?id=6129943fd1ced149ecafdaa5')
+      .get('http://localhost:5000/getEntry?id=' + this.id)
       .then(response => {
         this.vaccinee = response.data
         console.log(this.vaccinee)
@@ -223,7 +223,7 @@ export default {
       const vacc_info = {vaccine_info: [vaccines]}
       axios
         .post('http://localhost:5000/updateEntry', {
-          id: '6129943fd1ced149ecafdaa5',
+          id: this.id,
           data: vacc_info
         })
     },

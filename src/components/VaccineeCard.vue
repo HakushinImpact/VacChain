@@ -1,5 +1,5 @@
 <template>
-  <div class="box" @click="record(item._id)">
+  <div class="box" @click="record(vaccinee._id)">
     <div class="columns is-vcentered">
       <div class="column has-text-centered is-3">
         <span class="icon is-large fa-5x">
@@ -31,9 +31,12 @@ export default {
     vaccinee: {}
   },
   methods: {
-    // record(item._id){
-    //   this.$router.push('record')
-    // }
+    record(entry_id) {
+      this.$router.push({
+        name: 'Vaccination Record',
+        params: { id: entry_id }
+      });
+    }
   }
 };
 </script>
